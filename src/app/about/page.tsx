@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Zap, User, ShoppingCart, ChevronLeft } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "サイト概要",
@@ -8,14 +9,16 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <h1 className="text-2xl font-bold text-slate-800 mb-6">
-        ⚡ エレクトロニクス研究所について
+    <div className="max-w-3xl mx-auto px-4 py-12">
+      <h1 className="text-2xl font-bold text-[#1a2332] mb-8 flex items-center gap-2.5">
+        <div className="w-1 h-7 bg-[#00838F] rounded-full" />
+        エレクトロニクス研究所について
       </h1>
 
-      <div className="space-y-6 text-slate-600 text-sm leading-relaxed">
-        <section className="bg-white border border-slate-200 rounded-xl p-6">
-          <h2 className="font-bold text-slate-800 text-base mb-3">
+      <div className="space-y-6 text-gray-600 text-sm leading-relaxed">
+        <section className="bg-white border border-gray-200 rounded-lg p-6">
+          <h2 className="font-bold text-[#1a2332] text-base mb-3 flex items-center gap-2">
+            <Zap className="w-4 h-4 text-[#00838F]" />
             サイトのコンセプト
           </h2>
           <p>
@@ -26,8 +29,9 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-xl p-6">
-          <h2 className="font-bold text-slate-800 text-base mb-3">
+        <section className="bg-white border border-gray-200 rounded-lg p-6">
+          <h2 className="font-bold text-[#1a2332] text-base mb-3 flex items-center gap-2">
+            <User className="w-4 h-4 text-[#00838F]" />
             管理人について
           </h2>
           <p>
@@ -39,8 +43,9 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-xl p-6">
-          <h2 className="font-bold text-slate-800 text-base mb-3">
+        <section className="bg-white border border-gray-200 rounded-lg p-6">
+          <h2 className="font-bold text-[#1a2332] text-base mb-3 flex items-center gap-2">
+            <ShoppingCart className="w-4 h-4 text-[#00838F]" />
             Amazonアソシエイトについて
           </h2>
           <p>
@@ -52,8 +57,9 @@ export default function AboutPage() {
       </div>
 
       <div className="mt-8">
-        <Link href="/" className="text-blue-600 text-sm hover:underline">
-          ← ホームに戻る
+        <Link href="/" className="inline-flex items-center text-[#00838F] text-sm hover:text-[#006064] transition-colors font-medium">
+          <ChevronLeft className="w-4 h-4" />
+          ホームに戻る
         </Link>
       </div>
     </div>

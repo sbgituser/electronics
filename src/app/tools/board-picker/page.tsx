@@ -9,12 +9,13 @@ export const metadata: Metadata = {
 
 export default function BoardPickerPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
+    <div className="max-w-3xl mx-auto px-4 py-12">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-800 mb-2">
-          🔍 開発ボード診断ツール
+        <h1 className="text-2xl font-bold text-[#1a2332] mb-2 flex items-center gap-2.5">
+          <div className="w-1 h-7 bg-[#00838F] rounded-full" />
+          開発ボード診断ツール
         </h1>
-        <p className="text-slate-500 text-sm">
+        <p className="text-gray-500 text-sm ml-3.5">
           3つの質問に答えるだけで、あなたに最適な開発ボードをご提案します。
           Arduino、Raspberry Pi、ESP32 など5ボードから診断。
         </p>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Board } from "@/types";
 import { BOARDS } from "@/data/boards";
 import { buildAmazonUrl } from "@/lib/site";
+import { ChevronLeft, ExternalLink, RotateCcw } from "lucide-react";
 
 type Step = 1 | 2 | 3 | "result";
 
@@ -122,22 +123,40 @@ export default function BoardPicker() {
 
   const best = ranked[0];
 
+  const stepIndicator = (
+    <div className="flex items-center gap-2 mb-6">
+      {[1, 2, 3].map((s) => (
+        <div key={s} className="flex items-center gap-2">
+          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
+            (typeof step === "number" ? step : 4) >= s
+              ? "bg-[#00838F] text-white"
+              : "bg-gray-200 text-gray-500"
+          }`}>
+            {s}
+          </div>
+          {s < 3 && <div className={`w-8 h-0.5 ${(typeof step === "number" ? step : 4) > s ? "bg-[#00838F]" : "bg-gray-200"}`} />}
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div className="max-w-2xl mx-auto">
       {step === 1 && (
         <div>
-          <h2 className="text-xl font-bold text-slate-800 mb-4">
+          {stepIndicator}
+          <h2 className="text-lg font-bold text-[#1a2332] mb-4">
             Q1. 何がしたいですか？
           </h2>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2.5">
             {GOALS.map((g) => (
               <button
                 key={g.id}
                 onClick={() => handleGoal(g.id)}
-                className="flex items-center gap-3 p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-colors text-left"
+                className="flex items-center gap-3 p-4 bg-white border border-gray-200 rounded-lg hover:border-[#00838F] hover:bg-teal-50 transition-colors text-left"
               >
                 <span className="text-2xl">{g.emoji}</span>
-                <span className="text-slate-700 font-medium">{g.label}</span>
+                <span className="text-[#1a2332] font-medium text-sm">{g.label}</span>
               </button>
             ))}
           </div>
@@ -146,15 +165,16 @@ export default function BoardPicker() {
 
       {step === 2 && (
         <div>
-          <h2 className="text-xl font-bold text-slate-800 mb-4">
+          {stepIndicator}
+          <h2 className="text-lg font-bold text-[#1a2332] mb-4">
             Q2. 予算はどのくらいですか？
           </h2>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2.5">
             {BUDGETS.map((b) => (
               <button
                 key={b.id}
                 onClick={() => handleBudget(b.id)}
-                className="p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-colors text-left font-medium text-slate-700"
+                className="p-4 bg-white border border-gray-200 rounded-lg hover:border-[#00838F] hover:bg-teal-50 transition-colors text-left font-medium text-[#1a2332] text-sm"
               >
                 {b.label}
               </button>
@@ -162,24 +182,26 @@ export default function BoardPicker() {
           </div>
           <button
             onClick={() => setStep(1)}
-            className="mt-4 text-sm text-slate-400 hover:text-slate-600"
+            className="mt-4 inline-flex items-center text-sm text-gray-400 hover:text-[#00838F] transition-colors"
           >
-            ← 戻る
+            <ChevronLeft className="w-4 h-4" />
+            戻る
           </button>
         </div>
       )}
 
       {step === 3 && (
         <div>
-          <h2 className="text-xl font-bold text-slate-800 mb-4">
+          {stepIndicator}
+          <h2 className="text-lg font-bold text-[#1a2332] mb-4">
             Q3. プログラミング経験は？
           </h2>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2.5">
             {EXPERIENCES.map((e) => (
               <button
                 key={e.id}
                 onClick={() => handleExperience(e.id)}
-                className="p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-colors text-left font-medium text-slate-700"
+                className="p-4 bg-white border border-gray-200 rounded-lg hover:border-[#00838F] hover:bg-teal-50 transition-colors text-left font-medium text-[#1a2332] text-sm"
               >
                 {e.label}
               </button>
@@ -187,41 +209,42 @@ export default function BoardPicker() {
           </div>
           <button
             onClick={() => setStep(2)}
-            className="mt-4 text-sm text-slate-400 hover:text-slate-600"
+            className="mt-4 inline-flex items-center text-sm text-gray-400 hover:text-[#00838F] transition-colors"
           >
-            ← 戻る
+            <ChevronLeft className="w-4 h-4" />
+            戻る
           </button>
         </div>
       )}
 
       {step === "result" && best && (
         <div>
-          <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-6">
-            <p className="text-sm font-semibold text-blue-600 mb-1">
+          <div className="bg-gradient-to-br from-teal-50 to-teal-100/50 border border-teal-200 rounded-lg p-6 mb-6">
+            <p className="text-sm font-semibold text-[#00838F] mb-1">
               あなたへのおすすめ
             </p>
-            <h2 className="text-2xl font-bold text-slate-800 mb-2">
+            <h2 className="text-2xl font-bold text-[#1a2332] mb-2">
               {best.name}
             </h2>
-            <p className="text-slate-600 mb-4">{best.description}</p>
-            <div className="flex flex-wrap gap-2 text-xs mb-4">
-              <span className="bg-white border rounded px-2 py-1">
+            <p className="text-gray-600 text-sm leading-relaxed mb-4">{best.description}</p>
+            <div className="flex flex-wrap gap-2 text-xs mb-5">
+              <span className="bg-white border border-gray-200 rounded px-2.5 py-1 text-gray-600">
                 CPU: {best.cpu}
               </span>
-              <span className="bg-white border rounded px-2 py-1">
+              <span className="bg-white border border-gray-200 rounded px-2.5 py-1 text-gray-600">
                 メモリ: {best.memory}
               </span>
-              <span className="bg-white border rounded px-2 py-1">
+              <span className="bg-white border border-gray-200 rounded px-2.5 py-1 text-gray-600">
                 価格: {best.price}
               </span>
               {best.wifi && (
-                <span className="bg-green-100 text-green-700 border rounded px-2 py-1">
-                  Wi-Fi ✓
+                <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 rounded px-2.5 py-1">
+                  Wi-Fi
                 </span>
               )}
               {best.bluetooth && (
-                <span className="bg-green-100 text-green-700 border rounded px-2 py-1">
-                  BT ✓
+                <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 rounded px-2.5 py-1">
+                  Bluetooth
                 </span>
               )}
             </div>
@@ -229,49 +252,50 @@ export default function BoardPicker() {
               href={buildAmazonUrl(best.asin)}
               target="_blank"
               rel="nofollow noopener noreferrer"
-              className="inline-block bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-6 rounded-lg transition-colors"
+              className="inline-flex items-center gap-1.5 bg-[#FF6D00] hover:bg-[#E65100] text-white font-semibold py-2.5 px-6 rounded transition-colors text-sm"
             >
               Amazonで見る
+              <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
 
-          <h3 className="font-bold text-slate-700 mb-3">全ボード比較</h3>
+          <h3 className="font-bold text-[#1a2332] text-sm mb-3">全ボード比較</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-xs border-collapse">
               <thead>
-                <tr className="bg-slate-100">
-                  <th className="text-left p-2 border border-slate-200">ボード</th>
-                  <th className="p-2 border border-slate-200">価格</th>
-                  <th className="p-2 border border-slate-200">Wi-Fi</th>
-                  <th className="p-2 border border-slate-200">難易度</th>
-                  <th className="p-2 border border-slate-200">AI</th>
+                <tr className="bg-[#F5F7FA]">
+                  <th className="text-left p-2.5 border border-gray-200 font-semibold text-gray-600">ボード</th>
+                  <th className="p-2.5 border border-gray-200 font-semibold text-gray-600">価格</th>
+                  <th className="p-2.5 border border-gray-200 font-semibold text-gray-600">Wi-Fi</th>
+                  <th className="p-2.5 border border-gray-200 font-semibold text-gray-600">難易度</th>
+                  <th className="p-2.5 border border-gray-200 font-semibold text-gray-600">AI</th>
                 </tr>
               </thead>
               <tbody>
                 {ranked.map((b, i) => (
                   <tr
                     key={b.id}
-                    className={i === 0 ? "bg-blue-50 font-semibold" : ""}
+                    className={i === 0 ? "bg-teal-50 font-semibold" : ""}
                   >
-                    <td className="p-2 border border-slate-200">
-                      {i === 0 ? "⭐ " : ""}
+                    <td className="p-2.5 border border-gray-200 text-[#1a2332]">
+                      {i === 0 && <span className="text-[#00838F] mr-1">●</span>}
                       {b.name}
                     </td>
-                    <td className="p-2 border border-slate-200 text-center">
+                    <td className="p-2.5 border border-gray-200 text-center text-gray-600">
                       {b.price}
                     </td>
-                    <td className="p-2 border border-slate-200 text-center">
-                      {b.wifi ? "✓" : "✗"}
+                    <td className="p-2.5 border border-gray-200 text-center">
+                      {b.wifi ? <span className="text-emerald-600">✓</span> : <span className="text-gray-300">—</span>}
                     </td>
-                    <td className="p-2 border border-slate-200 text-center">
+                    <td className="p-2.5 border border-gray-200 text-center text-gray-600">
                       {b.difficulty === "easy"
                         ? "やさしい"
                         : b.difficulty === "medium"
                           ? "普通"
                           : "難しい"}
                     </td>
-                    <td className="p-2 border border-slate-200 text-center">
-                      {b.aiCapable ? "✓" : "✗"}
+                    <td className="p-2.5 border border-gray-200 text-center">
+                      {b.aiCapable ? <span className="text-emerald-600">✓</span> : <span className="text-gray-300">—</span>}
                     </td>
                   </tr>
                 ))}
@@ -281,8 +305,9 @@ export default function BoardPicker() {
 
           <button
             onClick={reset}
-            className="mt-6 text-sm text-blue-600 hover:underline"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm text-[#00838F] hover:text-[#006064] font-medium transition-colors"
           >
+            <RotateCcw className="w-3.5 h-3.5" />
             もう一度試す
           </button>
         </div>

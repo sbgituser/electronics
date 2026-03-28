@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Zap } from "lucide-react";
 
 const navItems = [
   { href: "/articles", label: "記事" },
@@ -14,22 +15,26 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-5xl mx-auto px-4 flex items-center justify-between h-14">
+    <header className="bg-[#1a2332] sticky top-0 z-50">
+      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
         <Link
           href="/"
-          className="flex items-center gap-2 no-underline hover:opacity-80 transition-opacity"
+          className="flex items-center gap-2.5 no-underline hover:opacity-90 transition-opacity"
         >
-          <span className="text-xl text-amber-500">⚡</span>
-          <span className="font-bold text-base tracking-tight text-gray-800">
-            エレクトロニクス研究所
-            <span className="hidden sm:inline text-gray-400 font-normal text-xs ml-1">
+          <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
+            <Zap className="w-5 h-5 text-white" />
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className="font-bold text-base tracking-tight text-white">
+              エレクトロニクス研究所
+            </span>
+            <span className="text-teal-400 font-normal text-[11px] hidden sm:inline">
               kuras-plus
             </span>
-          </span>
+          </div>
         </Link>
 
-        <nav className="flex gap-1" aria-label="メインナビゲーション">
+        <nav className="flex items-center gap-1" aria-label="メインナビゲーション">
           {navItems.map(({ href, label }) => {
             const isActive =
               pathname === href || pathname.startsWith(href + "/");
@@ -37,10 +42,10 @@ export default function Header() {
               <Link
                 key={href}
                 href={href}
-                className={`text-sm px-3 py-1.5 rounded-lg transition-colors ${
+                className={`text-sm px-4 py-2 rounded transition-colors ${
                   isActive
-                    ? "bg-blue-50 text-blue-600 font-medium"
-                    : "text-gray-600 hover:text-blue-600 hover:bg-gray-50"
+                    ? "text-white bg-white/10 font-medium"
+                    : "text-gray-300 hover:text-white hover:bg-white/5"
                 }`}
                 aria-current={isActive ? "page" : undefined}
               >

@@ -7,12 +7,15 @@ export const metadata = {
 
 export default function ToolsPage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10">
-      <h1 className="text-2xl font-bold text-slate-800 mb-2">ツール一覧</h1>
-      <p className="text-slate-500 text-sm mb-8">
+    <div className="max-w-6xl mx-auto px-4 py-12">
+      <h1 className="text-2xl font-bold text-[#1a2332] mb-2 flex items-center gap-2.5">
+        <div className="w-1 h-7 bg-amber-500 rounded-full" />
+        ツール一覧
+      </h1>
+      <p className="text-gray-500 text-sm mb-8 ml-3.5">
         電子工作をはじめるときに役立つ無料ツールです。
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <ToolCard
           href="/tools/board-picker"
           title="開発ボード診断ツール"

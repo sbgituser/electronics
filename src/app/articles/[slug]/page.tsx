@@ -5,6 +5,7 @@ import { getAllArticleSlugs, getArticleBySlug, getAllArticles } from "@/lib/arti
 import { SITE_URL } from "@/lib/site";
 import CategoryBadge from "@/components/articles/CategoryBadge";
 import ProductCard from "@/components/common/ProductCard";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export async function generateStaticParams() {
   return getAllArticleSlugs().map((slug) => ({ slug }));
@@ -47,27 +48,27 @@ export default async function ArticleDetailPage({
     .slice(0, 3);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
+    <div className="max-w-3xl mx-auto px-4 py-12">
       {/* パンくずリスト */}
-      <nav className="text-xs text-slate-400 mb-6 flex items-center gap-1">
-        <Link href="/" className="hover:text-slate-600">ホーム</Link>
-        <span>/</span>
-        <Link href="/articles" className="hover:text-slate-600">記事</Link>
-        <span>/</span>
-        <span className="text-slate-600 truncate">{article.title}</span>
+      <nav className="text-xs text-gray-400 mb-6 flex items-center gap-1.5">
+        <Link href="/" className="hover:text-[#00838F] transition-colors">ホーム</Link>
+        <ChevronRight className="w-3 h-3" />
+        <Link href="/articles" className="hover:text-[#00838F] transition-colors">記事</Link>
+        <ChevronRight className="w-3 h-3" />
+        <span className="text-gray-600 truncate">{article.title}</span>
       </nav>
 
       {/* ヘッダー */}
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-3">
           <CategoryBadge category={article.category} />
-          <span className="text-xs text-slate-400">{article.readingTime}</span>
+          <span className="text-xs text-gray-400">{article.readingTime}</span>
         </div>
-        <h1 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight mb-3">
+        <h1 className="text-2xl md:text-3xl font-bold text-[#1a2332] leading-tight mb-3">
           {article.title}
         </h1>
-        <p className="text-slate-500 text-sm">{article.description}</p>
-        <p className="text-slate-400 text-xs mt-2">{article.date}</p>
+        <p className="text-gray-500 text-sm">{article.description}</p>
+        <p className="text-gray-400 text-xs mt-2">{article.date}</p>
       </div>
 
       {/* 本文 */}
@@ -79,7 +80,8 @@ export default async function ArticleDetailPage({
       {/* 商品カード */}
       {article.products && article.products.length > 0 && (
         <div className="mt-10">
-          <h2 className="font-bold text-slate-800 mb-4 text-lg">
+          <h2 className="font-bold text-[#1a2332] mb-4 text-lg flex items-center gap-2.5">
+            <div className="w-1 h-5 bg-[#FF6D00] rounded-full" />
             この記事で紹介した商品
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -98,28 +100,32 @@ export default async function ArticleDetailPage({
       {/* 関連記事 */}
       {related.length > 0 && (
         <div className="mt-12">
-          <h2 className="font-bold text-slate-800 mb-4 text-lg">関連記事</h2>
+          <h2 className="font-bold text-[#1a2332] mb-4 text-lg flex items-center gap-2.5">
+            <div className="w-1 h-5 bg-[#00838F] rounded-full" />
+            関連記事
+          </h2>
           <div className="flex flex-col gap-3">
             {related.map((a) => (
               <Link
                 key={a.slug}
                 href={`/articles/${a.slug}`}
-                className="bg-white border border-slate-200 rounded-xl p-4 hover:shadow-md transition-shadow"
+                className="group bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
               >
                 <div className="flex items-center gap-2 mb-1">
                   <CategoryBadge category={a.category} />
-                  <span className="text-xs text-slate-400">{a.readingTime}</span>
+                  <span className="text-xs text-gray-400">{a.readingTime}</span>
                 </div>
-                <p className="font-semibold text-slate-800 text-sm">{a.title}</p>
+                <p className="font-semibold text-[#1a2332] text-sm group-hover:text-[#00838F] transition-colors">{a.title}</p>
               </Link>
             ))}
           </div>
         </div>
       )}
 
-      <div className="mt-10 pt-6 border-t border-slate-200">
-        <Link href="/articles" className="text-blue-600 text-sm hover:underline">
-          ← 記事一覧に戻る
+      <div className="mt-10 pt-6 border-t border-gray-200">
+        <Link href="/articles" className="inline-flex items-center text-[#00838F] text-sm hover:text-[#006064] font-medium transition-colors">
+          <ChevronLeft className="w-4 h-4" />
+          記事一覧に戻る
         </Link>
       </div>
     </div>
