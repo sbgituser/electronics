@@ -19,6 +19,7 @@ export async function generateMetadata({
   const { partId } = await params;
   const part = getPartById(partId);
   if (!part) return {};
+  const ogImageUrl = `${SITE_URL}/og/parts/${partId}.png`;
   return {
     title: `${part.name} — スペック・購入ガイド`,
     description: `${part.name}（${part.nameEn}）のスペック詳細、初心者向け解説、使用レシピ、Amazon購入リンク。${part.beginnerNote}`,
@@ -27,6 +28,11 @@ export async function generateMetadata({
       title: `${part.name} | エレクトロニクス研究所`,
       description: part.beginnerNote,
       url: `${SITE_URL}/tools/parts-database/${partId}`,
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: part.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [ogImageUrl],
     },
   };
 }

@@ -19,6 +19,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
+  const ogImageUrl = `${SITE_URL}/og/articles/${slug}.png`;
   return {
     title: article.title,
     description: article.description,
@@ -29,6 +30,11 @@ export async function generateMetadata({
       url: `${SITE_URL}/articles/${slug}`,
       type: "article",
       publishedTime: article.date,
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: article.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [ogImageUrl],
     },
   };
 }

@@ -18,10 +18,21 @@ export async function generateMetadata({
   const { slug } = await params;
   const recipe = getRecipeBySlug(slug);
   if (!recipe) return {};
+  const ogImageUrl = `${SITE_URL}/og/recipes/${slug}.png`;
   return {
     title: recipe.title,
     description: recipe.description,
     alternates: { canonical: `${SITE_URL}/recipes/${slug}` },
+    openGraph: {
+      title: recipe.title,
+      description: recipe.description,
+      url: `${SITE_URL}/recipes/${slug}`,
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: recipe.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [ogImageUrl],
+    },
   };
 }
 

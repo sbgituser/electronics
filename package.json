@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:og": "npx tsx scripts/generate-og-images.tsx",
+    "prebuild": "npm run generate:og"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -22,6 +24,7 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -29,6 +32,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "satori": "^0.26.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"
