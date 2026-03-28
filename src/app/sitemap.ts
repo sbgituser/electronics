@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { getAllArticles } from "@/lib/articles";
 import { allRecipes } from "@/data/recipes";
+import { allParts } from "@/data/parts";
 
 export const dynamic = "force-static";
 
@@ -34,5 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...articleRoutes, ...recipeRoutes];
+  const partRoutes: MetadataRoute.Sitemap = allParts.map((p) => ({
+    url: `${SITE_URL}/tools/parts-database/${p.id}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...articleRoutes, ...recipeRoutes, ...partRoutes];
 }

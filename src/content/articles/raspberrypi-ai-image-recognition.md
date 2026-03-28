@@ -17,7 +17,7 @@ products:
 
 そう思ってはいたものの、「難しそう」と後回しにしていました。しかし実際にやってみると、意外と短時間でできてしまいました。
 
-この記事では、Raspberry Pi 5とカメラモジュールを使って、TensorFlow Liteで物体認識を試した手順をまとめます。
+この記事では、[Raspberry Pi 5](/tools/parts-database/raspberry-pi-5)とカメラモジュールを使って、TensorFlow Liteで物体認識を試した手順をまとめます。
 
 ---
 

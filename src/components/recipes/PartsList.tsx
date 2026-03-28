@@ -1,4 +1,4 @@
-import { amazonSearchUrl } from "@/lib/site";
+import { buildAmazonUrl, AMAZON_PARTNER_TAG } from "@/lib/site";
 import { getPartById } from "@/data/parts";
 import type { RecipePart } from "@/types/recipe";
 import Link from "next/link";
@@ -8,41 +8,39 @@ interface Props {
 }
 
 export default function PartsList({ parts }: Props) {
-  const query = parts.map((p) => p.name).join(" ");
-
   return (
-    <div>
-      <ul className="space-y-2 mb-4">
-        {parts.map((p, i) => {
-          const partData = getPartById(p.partId);
-          return (
-            <li key={i} className="flex items-center gap-2 text-sm">
-              <span className="text-slate-400 w-5 text-center">{p.quantity}×</span>
-              {partData ? (
-                <Link
-                  href={`/tools/parts-database#${p.partId}`}
-                  className="text-blue-600 hover:underline"
-                >
-                  {p.name}
-                </Link>
-              ) : (
-                <span className="text-slate-700">{p.name}</span>
-              )}
+    <ul className="space-y-2">
+      {parts.map((p, i) => {
+        const partData = getPartById(p.partId);
+        const amazonUrl = partData?.amazonAsin
+          ? buildAmazonUrl(partData.amazonAsin)
+          : `https://www.amazon.co.jp/s?k=${encodeURIComponent(p.name)}&tag=${AMAZON_PARTNER_TAG}`;
+
+        return (
+          <li key={i} className="flex items-center justify-between gap-2 py-1.5 border-b border-slate-100 last:border-0">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-slate-400 text-sm w-5 text-right shrink-0">{p.quantity}×</span>
+              <Link
+                href={`/tools/parts-database/${p.partId}`}
+                className="text-sm text-blue-600 hover:underline truncate"
+              >
+                {p.name}
+              </Link>
               {p.optional && (
-                <span className="text-xs text-slate-400">（任意）</span>
+                <span className="text-xs text-slate-400 shrink-0">（任意）</span>
               )}
-            </li>
-          );
-        })}
-      </ul>
-      <a
-        href={amazonSearchUrl(query)}
-        target="_blank"
-        rel="nofollow noopener noreferrer"
-        className="inline-block text-sm bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-lg transition-colors"
-      >
-        このパーツをまとめてAmazonで探す
-      </a>
-    </div>
+            </div>
+            <a
+              href={amazonUrl}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="text-xs text-orange-600 hover:text-orange-700 font-medium whitespace-nowrap shrink-0 border border-orange-200 px-2 py-0.5 rounded hover:bg-orange-50 transition-colors"
+            >
+              Amazon ↗
+            </a>
+          </li>
+        );
+      })}
+    </ul>
   );
 }

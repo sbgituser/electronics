@@ -13,7 +13,7 @@ products:
     price: "¥500前後"
 ---
 
-電子工作の入門で必ず登場する「ブレッドボード」。「使い方がよくわからない」という声をよく聞きます。
+電子工作の入門で必ず登場する「[ブレッドボード](/tools/parts-database/breadboard)」。「使い方がよくわからない」という声をよく聞きます。
 
 私も最初は「穴に差し込むだけ？どことどこがつながってるの？」と混乱しました。
 
@@ -55,10 +55,10 @@ products:
 
 ### 必要なもの
 
-- ブレッドボード
-- ジャンパーワイヤー（オス-オス）
-- LED（任意の色）
-- 抵抗（220Ω〜470Ω）
+- [ブレッドボード](/tools/parts-database/breadboard)
+- [ジャンパーワイヤー](/tools/parts-database/jumper-wires)（オス-オス）
+- [LED 5mm](/tools/parts-database/led-5mm)（任意の色）
+- [抵抗 220Ω](/tools/parts-database/resistor-set)（220Ω〜470Ω）
 - Arduino または電源
 
 ### LED点灯回路の例

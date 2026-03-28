@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Part } from "@/types/parts";
 import { PART_CATEGORIES } from "@/types/parts";
 import { buildAmazonUrl } from "@/lib/site";
+import Link from "next/link";
 
 const borderColors: Record<string, string> = {
   blue: "border-l-blue-500",
@@ -36,7 +37,11 @@ export default function PartCard({ part }: Props) {
             <span className="text-xs text-slate-500">{cat.label}</span>
             <span className={`text-xs font-medium ml-1 ${diffColor}`}>{diffLabel}</span>
           </div>
-          <h3 className="font-bold text-slate-800 text-sm leading-snug">{part.name}</h3>
+          <h3 className="font-bold text-slate-800 text-sm leading-snug">
+            <Link href={`/tools/parts-database/${part.id}`} className="hover:text-blue-600 hover:underline">
+              {part.name}
+            </Link>
+          </h3>
         </div>
         <span className="text-xs text-slate-500 whitespace-nowrap">{part.priceRange}</span>
       </div>
@@ -57,6 +62,12 @@ export default function PartCard({ part }: Props) {
         >
           {open ? "閉じる ▲" : "詳細を見る ▼"}
         </button>
+        <Link
+          href={`/tools/parts-database/${part.id}`}
+          className="text-xs py-1.5 px-3 border border-blue-200 rounded-lg text-blue-600 hover:bg-blue-50 transition-colors"
+        >
+          詳細ページ →
+        </Link>
         {part.amazonAsin && (
           <a
             href={buildAmazonUrl(part.amazonAsin)}
