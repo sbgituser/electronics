@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getAllArticles } from "@/lib/articles";
 import ArticleCard from "@/components/articles/ArticleCard";
 import ToolCard from "@/components/tools/ToolCard";
+import { beginnerRecipes } from "@/data/recipes/beginner";
+import RecipeCard from "@/components/recipes/RecipeCard";
 
 export default function HomePage() {
   const articles = getAllArticles().slice(0, 3);
@@ -50,6 +52,21 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {articles.map((a) => (
             <ArticleCard key={a.slug} article={a} />
+          ))}
+        </div>
+      </section>
+
+      {/* レシピブック */}
+      <section className="max-w-5xl mx-auto px-4 py-14">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-bold text-slate-800">作って学ぶレシピ</h2>
+          <Link href="/recipes" className="text-sm text-blue-600 hover:underline">
+            すべて見る →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {beginnerRecipes.slice(0, 3).map((r) => (
+            <RecipeCard key={r.slug} recipe={r} />
           ))}
         </div>
       </section>

@@ -32,6 +32,12 @@ export default function Footer() {
               記事
             </Link>
             <Link
+              href="/recipes"
+              className="text-slate-400 hover:text-white text-xs transition-colors"
+            >
+              レシピ
+            </Link>
+            <Link
               href="/tools"
               className="text-slate-400 hover:text-white text-xs transition-colors"
             >

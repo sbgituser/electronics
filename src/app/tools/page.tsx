@@ -20,6 +20,13 @@ export default function ToolsPage() {
           icon="🔍"
           badge="無料"
         />
+        <ToolCard
+          href="/tools/parts-database"
+          title="パーツ辞典"
+          description="電子工作で使うパーツをまとめた辞典。センサー、モーター、受動部品などのスペックを初心者向けに解説します。"
+          icon="📋"
+          badge="32種"
+        />
       </div>
     </div>
   );
