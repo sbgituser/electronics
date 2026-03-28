@@ -15,6 +15,7 @@ export interface ArticleMeta {
   category: CategoryKey;
   tags: string[];
   products?: { asin: string; name: string; price: string }[];
+  faqs?: { q: string; a: string }[];
   readingTime: string;
 }
 
@@ -48,6 +49,7 @@ export function getAllArticles(): ArticleMeta[] {
         category: data.category as CategoryKey,
         tags: (data.tags as string[]) ?? [],
         products: data.products,
+        faqs: data.faqs,
         readingTime: `約${Math.ceil(rt.minutes)}分`,
       };
     })
@@ -75,6 +77,7 @@ export function getArticleBySlug(slug: string): Article | null {
     category: data.category as CategoryKey,
     tags: (data.tags as string[]) ?? [],
     products: data.products,
+    faqs: data.faqs,
     readingTime: `約${Math.ceil(rt.minutes)}分`,
     content: htmlContent,
   };

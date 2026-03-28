@@ -86,6 +86,19 @@ export default async function ArticleDetailPage({
     ],
   };
 
+  const faqJsonLd = article.faqs && article.faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: article.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  } : null;
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
       <script
@@ -96,6 +109,12 @@ export default async function ArticleDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       {/* パンくずリスト */}
       <nav className="text-xs text-gray-400 mb-6 flex items-center gap-1.5">
         <Link href="/" className="hover:text-[#00838F] transition-colors">ホーム</Link>
