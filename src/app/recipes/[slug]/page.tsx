@@ -38,8 +38,44 @@ export default async function RecipeDetailPage({
     (r) => r.slug !== slug && recipe.relatedRecipes?.includes(r.slug)
   );
 
+  const howtoJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: recipe.title,
+    description: recipe.description,
+    totalTime: `PT${recipe.estimatedMinutes}M`,
+    step: recipe.skills.map((skill, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: skill,
+      text: skill,
+    })),
+    supply: recipe.parts.map((part) => ({
+      "@type": "HowToSupply",
+      name: part.name,
+    })),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "レシピ一覧", item: `${SITE_URL}/recipes` },
+      { "@type": "ListItem", position: 3, name: recipe.title },
+    ],
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howtoJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* パンくず */}
       <nav className="text-xs text-slate-400 mb-6 flex items-center gap-1">
         <Link href="/" className="hover:text-slate-600">ホーム</Link>

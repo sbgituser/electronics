@@ -58,8 +58,47 @@ export default async function PartDetailPage({
     ? buildAmazonUrl(part.amazonAsin)
     : `https://www.amazon.co.jp/s?k=${encodeURIComponent(part.name)}&tag=${AMAZON_PARTNER_TAG}`;
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: part.name,
+    description: part.beginnerNote,
+    category: cat.label,
+    ...(part.amazonAsin && {
+      offers: {
+        "@type": "Offer",
+        url: amazonUrl,
+        priceCurrency: "JPY",
+        availability: "https://schema.org/InStock",
+        seller: {
+          "@type": "Organization",
+          name: "Amazon.co.jp",
+        },
+      },
+    }),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "ツール", item: `${SITE_URL}/tools` },
+      { "@type": "ListItem", position: 3, name: "パーツ辞典", item: `${SITE_URL}/tools/parts-database` },
+      { "@type": "ListItem", position: 4, name: part.name },
+    ],
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* パンくずリスト */}
       <nav className="text-xs text-slate-400 mb-6 flex items-center gap-1 flex-wrap">
         <Link href="/" className="hover:text-slate-600">ホーム</Link>

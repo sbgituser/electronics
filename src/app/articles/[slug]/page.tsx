@@ -47,8 +47,49 @@ export default async function ArticleDetailPage({
     .filter((a) => a.category === article.category && a.slug !== slug)
     .slice(0, 3);
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    datePublished: article.date,
+    dateModified: article.date,
+    author: {
+      "@type": "Organization",
+      name: "kuras-plus",
+      url: "https://kuras-plus.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "kuras-plus",
+      url: "https://kuras-plus.com",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/articles/${article.slug}`,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "記事一覧", item: `${SITE_URL}/articles` },
+      { "@type": "ListItem", position: 3, name: article.title },
+    ],
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* パンくずリスト */}
       <nav className="text-xs text-gray-400 mb-6 flex items-center gap-1.5">
         <Link href="/" className="hover:text-[#00838F] transition-colors">ホーム</Link>
