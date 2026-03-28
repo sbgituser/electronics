@@ -1,8 +1,7 @@
 "use client";
 
 import Script from "next/script";
-
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+import { GA_ID } from "@/lib/site";
 
 export default function GoogleAnalytics() {
   if (!GA_ID) return null;
