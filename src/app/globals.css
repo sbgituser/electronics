@@ -82,9 +82,53 @@ body {
 .article-content blockquote {
   margin: 1rem 0;
   padding: 0.75rem 1rem;
-  border-left: 4px solid #94a3b8;
-  background: #f1f5f9;
+  border-left: 4px solid #93c5fd;
+  background: #eff6ff;
+  color: #374151;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.article-content blockquote p {
+  margin: 0;
+}
+
+/* テーブル */
+.article-content .table-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem -0.25rem;
+  padding: 0 0.25rem;
+}
+
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.article-content thead {
+  background: #f8fafc;
+}
+
+.article-content th {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border: 1px solid #cbd5e1;
+}
+
+.article-content td {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #cbd5e1;
   color: #475569;
+}
+
+.article-content tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+.article-content tr:hover td {
+  background: #eff6ff;
 }
 
 .article-content code {

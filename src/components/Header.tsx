@@ -14,16 +14,16 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="max-w-5xl mx-auto px-4 flex items-center justify-between h-14">
         <Link
           href="/"
-          className="flex items-center gap-2 text-white no-underline hover:opacity-90 transition-opacity"
+          className="flex items-center gap-2 no-underline hover:opacity-80 transition-opacity"
         >
-          <span className="text-xl">⚡</span>
-          <span className="font-bold text-base tracking-tight">
+          <span className="text-xl text-amber-500">⚡</span>
+          <span className="font-bold text-base tracking-tight text-gray-800">
             エレクトロニクス研究所
-            <span className="hidden sm:inline text-slate-400 font-normal text-xs ml-1">
+            <span className="hidden sm:inline text-gray-400 font-normal text-xs ml-1">
               kuras-plus
             </span>
           </span>
@@ -37,10 +37,10 @@ export default function Header() {
               <Link
                 key={href}
                 href={href}
-                className={`text-sm px-3 py-1.5 rounded transition-colors ${
+                className={`text-sm px-3 py-1.5 rounded-lg transition-colors ${
                   isActive
-                    ? "bg-white/15 text-white"
-                    : "text-slate-300 hover:text-white hover:bg-white/10"
+                    ? "bg-blue-50 text-blue-600 font-medium"
+                    : "text-gray-600 hover:text-blue-600 hover:bg-gray-50"
                 }`}
                 aria-current={isActive ? "page" : undefined}
               >

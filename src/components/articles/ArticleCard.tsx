@@ -6,7 +6,7 @@ export default function ArticleCard({ article }: { article: ArticleMeta }) {
   return (
     <Link
       href={`/articles/${article.slug}`}
-      className="block bg-white rounded-xl border border-slate-200 p-5 hover:shadow-md transition-shadow"
+      className="block bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
     >
       <div className="flex items-center gap-2 mb-2">
         <CategoryBadge category={article.category} />

@@ -60,7 +60,13 @@ export function getArticleBySlug(slug: string): Article | null {
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
   const rt = readingTime(content);
-  const htmlContent = marked(content) as string;
+  const renderer = new marked.Renderer();
+  const originalTable = renderer.table.bind(renderer);
+  renderer.table = (token) => {
+    const html = originalTable(token);
+    return `<div class="table-wrapper">${html}</div>`;
+  };
+  const htmlContent = marked(content, { renderer }) as string;
   return {
     slug,
     title: data.title as string,
