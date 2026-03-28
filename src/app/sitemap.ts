@@ -3,6 +3,7 @@ import { SITE_URL } from "@/lib/site";
 import { getAllArticles } from "@/lib/articles";
 import { allRecipes } from "@/data/recipes";
 import { allParts } from "@/data/parts";
+import { categoryGuides } from "@/data/parts/categories";
 
 export const dynamic = "force-static";
 
@@ -42,5 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...articleRoutes, ...recipeRoutes, ...partRoutes];
+  const categoryRoutes: MetadataRoute.Sitemap = categoryGuides.map((g) => ({
+    url: `${SITE_URL}/tools/parts-database/category/${g.id}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...articleRoutes, ...recipeRoutes, ...partRoutes, ...categoryRoutes];
 }
