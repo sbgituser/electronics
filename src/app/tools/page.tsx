@@ -53,6 +53,12 @@ export default function ToolsPage() {
           title="分圧回路計算"
           description="分圧回路の出力電圧を自動計算。目標電圧から最適な抵抗値の組み合わせも提案。Arduino ADC入力やセンサー電圧調整に便利。"
           icon="🔋"
+        />
+        <ToolCard
+          href="/tools/power-supply-calc"
+          title="電源容量計算"
+          description="使うセンサーやモーターを選ぶだけで合計消費電流を自動計算。推奨電源を提案し、バッテリー駆動時間も算出します。"
+          icon="🔌"
           badge="NEW"
         />
       </div>
