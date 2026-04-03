@@ -35,6 +35,12 @@ export default function ToolsPage() {
           title="LED抵抗計算"
           description="LED回路に必要な抵抗値をワンクリック計算。Arduino・ESP32・Raspberry Piの電源電圧プリセット対応。E24系列の推奨値を提案します。"
           icon="💡"
+        />
+        <ToolCard
+          href="/tools/resistor-color-code"
+          title="抵抗カラーコード"
+          description="抵抗のカラーコード（色帯）から抵抗値を読み取るツール。4バンド・5バンド・6バンドに対応。逆引き機能で抵抗値からカラーコードも検索可能。"
+          icon="🎨"
           badge="NEW"
         />
       </div>
