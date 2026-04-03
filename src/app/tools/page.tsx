@@ -30,6 +30,13 @@ export default function ToolsPage() {
           icon="📋"
           badge="32種"
         />
+        <ToolCard
+          href="/tools/led-resistor-calc"
+          title="LED抵抗計算"
+          description="LED回路に必要な抵抗値をワンクリック計算。Arduino・ESP32・Raspberry Piの電源電圧プリセット対応。E24系列の推奨値を提案します。"
+          icon="💡"
+          badge="NEW"
+        />
       </div>
     </div>
   );
