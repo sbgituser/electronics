@@ -47,6 +47,12 @@ export default function ToolsPage() {
           title="オームの法則計算"
           description="電圧・電流・抵抗・電力の任意2値を入力すると残り2値を自動計算。Arduino/ESP32/Raspberry PiのGPIOプリセット対応。公式輪で12公式を視覚表示。"
           icon="⚡"
+        />
+        <ToolCard
+          href="/tools/voltage-divider-calc"
+          title="分圧回路計算"
+          description="分圧回路の出力電圧を自動計算。目標電圧から最適な抵抗値の組み合わせも提案。Arduino ADC入力やセンサー電圧調整に便利。"
+          icon="🔋"
           badge="NEW"
         />
       </div>
