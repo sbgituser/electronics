@@ -41,6 +41,12 @@ export default function ToolsPage() {
           title="抵抗カラーコード"
           description="抵抗のカラーコード（色帯）から抵抗値を読み取るツール。4バンド・5バンド・6バンドに対応。逆引き機能で抵抗値からカラーコードも検索可能。"
           icon="🎨"
+        />
+        <ToolCard
+          href="/tools/ohms-law-calc"
+          title="オームの法則計算"
+          description="電圧・電流・抵抗・電力の任意2値を入力すると残り2値を自動計算。Arduino/ESP32/Raspberry PiのGPIOプリセット対応。公式輪で12公式を視覚表示。"
+          icon="⚡"
           badge="NEW"
         />
       </div>
