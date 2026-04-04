@@ -25,6 +25,11 @@ export async function generateMetadata({
     alternates: {
       canonical: `${SITE_URL}/tools/parts-database/category/${categoryId}`,
     },
+    openGraph: {
+      title: `${guide.name}とは？ | エレクトロニクス研究所`,
+      description: guide.whatIs,
+      url: `${SITE_URL}/tools/parts-database/category/${categoryId}`,
+    },
   };
 }
 
@@ -40,8 +45,38 @@ export default async function CategoryGuidePage({
   const categoryParts = allParts.filter((p) => p.category === (categoryId as PartCategory));
   const beginnerPart = allParts.find((p) => p.id === guide.beginnerFirst);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "ツール", item: `${SITE_URL}/tools` },
+          { "@type": "ListItem", position: 3, name: "パーツ辞典", item: `${SITE_URL}/tools/parts-database` },
+          { "@type": "ListItem", position: 4, name: `${guide.name}とは？` },
+        ],
+      },
+      {
+        "@type": "ItemList",
+        name: `${guide.name}一覧`,
+        numberOfItems: categoryParts.length,
+        itemListElement: categoryParts.map((p, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: p.name,
+          url: `${SITE_URL}/tools/parts-database/${p.id}`,
+        })),
+      },
+    ],
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* パンくず */}
       <nav className="text-xs text-slate-400 mb-6 flex items-center gap-1 flex-wrap">
         <Link href="/" className="hover:text-slate-600">ホーム</Link>

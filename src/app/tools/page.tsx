@@ -1,18 +1,44 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import ToolCard from "@/components/tools/ToolCard";
 import { SITE_URL } from "@/lib/site";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "ツール一覧",
   description: "電子工作の初心者向け実用ツール集。LED抵抗計算、オームの法則計算、抵抗カラーコード解読、分圧回路計算、開発ボード診断など無料で使えます。",
+  alternates: { canonical: `${SITE_URL}/tools` },
+  openGraph: {
+    title: "ツール一覧 | エレクトロニクス研究所",
+    description: "電子工作の初心者向け実用ツール集。LED抵抗計算、オームの法則計算、抵抗カラーコード解読、分圧回路計算、開発ボード診断など無料で使えます。",
+    url: `${SITE_URL}/tools`,
+  },
 };
 
 export default function ToolsPage() {
-  const breadcrumbJsonLd = {
+  const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "ツール一覧" },
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "ツール一覧" },
+        ],
+      },
+      {
+        "@type": "ItemList",
+        name: "電子工作ツール一覧",
+        numberOfItems: 7,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "開発ボード診断ツール", url: `${SITE_URL}/tools/board-picker` },
+          { "@type": "ListItem", position: 2, name: "パーツ辞典", url: `${SITE_URL}/tools/parts-database` },
+          { "@type": "ListItem", position: 3, name: "LED抵抗計算", url: `${SITE_URL}/tools/led-resistor-calc` },
+          { "@type": "ListItem", position: 4, name: "抵抗カラーコード", url: `${SITE_URL}/tools/resistor-color-code` },
+          { "@type": "ListItem", position: 5, name: "オームの法則計算", url: `${SITE_URL}/tools/ohms-law-calc` },
+          { "@type": "ListItem", position: 6, name: "分圧回路計算", url: `${SITE_URL}/tools/voltage-divider-calc` },
+          { "@type": "ListItem", position: 7, name: "電源容量計算", url: `${SITE_URL}/tools/power-supply-calc` },
+        ],
+      },
     ],
   };
 
@@ -20,8 +46,14 @@ export default function ToolsPage() {
     <div className="max-w-6xl mx-auto px-4 py-12">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {/* パンくずリスト */}
+      <nav className="text-xs text-gray-400 mb-6" aria-label="パンくずリスト">
+        <Link href="/" className="hover:text-[#00838F]">ホーム</Link>
+        <span className="mx-1.5">/</span>
+        <span className="text-gray-600">ツール一覧</span>
+      </nav>
       <h1 className="text-2xl font-bold text-[#1a2332] mb-2 flex items-center gap-2.5">
         <div className="w-1 h-7 bg-amber-500 rounded-full" />
         ツール一覧

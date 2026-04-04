@@ -1,15 +1,41 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Zap, User, ShoppingCart, ChevronLeft } from "lucide-react";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "サイト概要",
   description: "エレクトロニクス研究所について。電子工作×フィジカルAIをテーマにした初心者向け情報サイトです。",
+  alternates: { canonical: `${SITE_URL}/about` },
+  openGraph: {
+    title: "サイト概要 | エレクトロニクス研究所",
+    description: "エレクトロニクス研究所について。電子工作×フィジカルAIをテーマにした初心者向け情報サイトです。",
+    url: `${SITE_URL}/about`,
+  },
 };
 
 export default function AboutPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "サイト概要" },
+    ],
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {/* パンくずリスト */}
+      <nav className="text-xs text-gray-400 mb-6 flex items-center gap-1.5">
+        <Link href="/" className="hover:text-[#00838F] transition-colors">ホーム</Link>
+        <ChevronLeft className="w-3 h-3 rotate-180" />
+        <span className="text-gray-600">サイト概要</span>
+      </nav>
       <h1 className="text-2xl font-bold text-[#1a2332] mb-8 flex items-center gap-2.5">
         <div className="w-1 h-7 bg-[#00838F] rounded-full" />
         エレクトロニクス研究所について

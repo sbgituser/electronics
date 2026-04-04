@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "LED抵抗計算ツール | 電源電圧とLED仕様から適切な抵抗値を計算",
   description:
     "LED回路に必要な抵抗値を自動計算。Arduino・ESP32・Raspberry Piの電源電圧プリセット対応。直列・並列接続にも対応し、E24系列の推奨抵抗値を提案します。",
+  alternates: { canonical: `${SITE_URL}/tools/led-resistor-calc` },
   openGraph: {
     title: "LED抵抗計算ツール | 電源電圧とLED仕様から適切な抵抗値を計算",
     description:

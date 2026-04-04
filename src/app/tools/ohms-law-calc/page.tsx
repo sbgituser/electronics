@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "オームの法則計算ツール | 電圧・電流・抵抗・電力を自動計算",
   description:
     "オームの法則（V=IR）で電圧・電流・抵抗・電力を自動計算。任意の2値を入力するだけ。Arduino/ESP32のGPIOピン出力プリセット対応。",
+  alternates: { canonical: `${SITE_URL}/tools/ohms-law-calc` },
   openGraph: {
     title: "オームの法則計算ツール | 電圧・電流・抵抗・電力を自動計算",
     description:

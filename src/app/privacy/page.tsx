@@ -1,14 +1,34 @@
 import type { Metadata } from "next";
-import { SITE_NAME } from "@/lib/site";
+import Link from "next/link";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
   description: "エレクトロニクス研究所のプライバシーポリシー。個人情報の取り扱い、Cookie、アクセス解析、広告についてご説明します。",
+  alternates: { canonical: `${SITE_URL}/privacy` },
 };
 
 export default function PrivacyPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "プライバシーポリシー" },
+    ],
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <nav className="text-xs text-slate-400 mb-6 flex items-center gap-1">
+        <Link href="/" className="hover:text-slate-600">ホーム</Link>
+        <span>/</span>
+        <span className="text-slate-600">プライバシーポリシー</span>
+      </nav>
       <h1 className="text-2xl font-bold text-slate-800 mb-6">
         プライバシーポリシー
       </h1>

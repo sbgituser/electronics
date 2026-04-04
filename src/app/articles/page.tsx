@@ -1,10 +1,17 @@
+import type { Metadata } from "next";
 import { getAllArticles, CATEGORIES } from "@/lib/articles";
 import ArticlesClient from "./ArticlesClient";
 import { SITE_URL } from "@/lib/site";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "記事一覧",
   description: "電子工作とAIに関する入門記事をカテゴリ別にご覧いただけます。Arduino、Raspberry Pi、ESP32の比較・レビュー・基礎知識を初心者向けに解説。",
+  alternates: { canonical: `${SITE_URL}/articles` },
+  openGraph: {
+    title: "記事一覧 | エレクトロニクス研究所",
+    description: "電子工作とAIに関する入門記事をカテゴリ別にご覧いただけます。Arduino、Raspberry Pi、ESP32の比較・レビュー・基礎知識を初心者向けに解説。",
+    url: `${SITE_URL}/articles`,
+  },
 };
 
 export default function ArticlesPage() {

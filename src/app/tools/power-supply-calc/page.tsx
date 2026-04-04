@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "電源容量計算ツール | プロジェクトに必要な電源をすぐ計算",
   description:
     "Arduino・ESP32プロジェクトの消費電力を自動計算。使うセンサーやモーターを選ぶだけで、推奨電源を提案します。バッテリー駆動時間も計算可能。",
+  alternates: { canonical: `${SITE_URL}/tools/power-supply-calc` },
   openGraph: {
     title: "電源容量計算ツール | プロジェクトに必要な電源をすぐ計算",
     description:
