@@ -1,12 +1,30 @@
 import type { Metadata } from "next";
 import { allRecipes } from "@/data/recipes";
 import RecipesClient from "./RecipesClient";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "レシピブック",
-  description: "電子工作のレシピ集。初級から上級まで、ステップバイステップで作れるプロジェクトをご紹介。",
+  description: "電子工作のレシピ集。初級から上級まで、ステップバイステップで作れるプロジェクトをご紹介。Lチカ、温度計、サーボ制御など。",
 };
 
 export default function RecipesPage() {
-  return <RecipesClient recipes={allRecipes} />;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "レシピブック" },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <RecipesClient recipes={allRecipes} />
+    </>
+  );
 }

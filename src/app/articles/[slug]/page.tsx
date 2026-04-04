@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getAllArticleSlugs, getArticleBySlug, getAllArticles } from "@/lib/articles";
+import { getAllArticleSlugs, getArticleBySlug, getRelatedArticles } from "@/lib/articles";
 import { SITE_URL } from "@/lib/site";
 import CategoryBadge from "@/components/articles/CategoryBadge";
 import ProductCard from "@/components/common/ProductCard";
+import RelatedArticles from "@/components/RelatedArticles";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export async function generateStaticParams() {
@@ -48,10 +49,7 @@ export default async function ArticleDetailPage({
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
-  const allArticles = getAllArticles();
-  const related = allArticles
-    .filter((a) => a.category === article.category && a.slug !== slug)
-    .slice(0, 3);
+  const related = getRelatedArticles(slug, article.category, article.tags, 5);
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -164,29 +162,7 @@ export default async function ArticleDetailPage({
       )}
 
       {/* 関連記事 */}
-      {related.length > 0 && (
-        <div className="mt-12">
-          <h2 className="font-bold text-[#1a2332] mb-4 text-lg flex items-center gap-2.5">
-            <div className="w-1 h-5 bg-[#00838F] rounded-full" />
-            関連記事
-          </h2>
-          <div className="flex flex-col gap-3">
-            {related.map((a) => (
-              <Link
-                key={a.slug}
-                href={`/articles/${a.slug}`}
-                className="group bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <CategoryBadge category={a.category} />
-                  <span className="text-xs text-gray-400">{a.readingTime}</span>
-                </div>
-                <p className="font-semibold text-[#1a2332] text-sm group-hover:text-[#00838F] transition-colors">{a.title}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+      <RelatedArticles articles={related} />
 
       <div className="mt-10 pt-6 border-t border-gray-200">
         <Link href="/articles" className="inline-flex items-center text-[#00838F] text-sm hover:text-[#006064] font-medium transition-colors">

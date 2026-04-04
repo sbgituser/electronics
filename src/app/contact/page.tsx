@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
+  description: "エレクトロニクス研究所へのお問い合わせページ。記事の内容や電子工作に関するご質問はこちらからどうぞ。",
 };
 
 export default function ContactPage() {

@@ -5,7 +5,7 @@ import ResistorColorCodeClient from "@/components/tools/ResistorColorCodeClient"
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: `抵抗カラーコード解読ツール | 色帯から抵抗値を即座に計算 — ${SITE_NAME}`,
+  title: "抵抗カラーコード解読ツール | 色帯から抵抗値を即座に計算",
   description:
     "抵抗のカラーコード（色帯）から抵抗値を読み取るツール。4バンド・5バンド・6バンドに対応。逆引き機能で抵抗値からカラーコードも検索可能。",
   openGraph: {

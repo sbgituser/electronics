@@ -3,6 +3,7 @@ import { SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
+  description: "エレクトロニクス研究所のプライバシーポリシー。個人情報の取り扱い、Cookie、アクセス解析、広告についてご説明します。",
 };
 
 export default function PrivacyPage() {

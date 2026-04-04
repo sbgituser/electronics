@@ -1,13 +1,27 @@
 import ToolCard from "@/components/tools/ToolCard";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata = {
   title: "ツール一覧",
-  description: "電子工作の初心者向け実用ツール集。開発ボード診断など。",
+  description: "電子工作の初心者向け実用ツール集。LED抵抗計算、オームの法則計算、抵抗カラーコード解読、分圧回路計算、開発ボード診断など無料で使えます。",
 };
 
 export default function ToolsPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "ツール一覧" },
+    ],
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <h1 className="text-2xl font-bold text-[#1a2332] mb-2 flex items-center gap-2.5">
         <div className="w-1 h-7 bg-amber-500 rounded-full" />
         ツール一覧

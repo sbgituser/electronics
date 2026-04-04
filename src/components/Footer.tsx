@@ -20,30 +20,35 @@ export default function Footer() {
             </p>
           </div>
           <nav
-            className="flex flex-wrap gap-x-8 gap-y-3"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-x-12 gap-y-6"
             aria-label="フッターナビゲーション"
           >
-            <Link href="/" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">
-              ホーム
-            </Link>
-            <Link href="/articles" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">
-              記事
-            </Link>
-            <Link href="/recipes" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">
-              レシピ
-            </Link>
-            <Link href="/tools" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">
-              ツール
-            </Link>
-            <Link href="/about" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">
-              概要
-            </Link>
-            <Link href="/privacy" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">
-              プライバシーポリシー
-            </Link>
-            <Link href="/contact" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">
-              お問い合わせ
-            </Link>
+            <div>
+              <p className="text-gray-300 text-xs font-semibold mb-2">コンテンツ</p>
+              <ul className="space-y-1.5">
+                <li><Link href="/articles" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">記事一覧</Link></li>
+                <li><Link href="/recipes" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">レシピブック</Link></li>
+              </ul>
+            </div>
+            <div>
+              <p className="text-gray-300 text-xs font-semibold mb-2">ツール</p>
+              <ul className="space-y-1.5">
+                <li><Link href="/tools" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">ツール一覧</Link></li>
+                <li><Link href="/tools/board-picker" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">ボード診断</Link></li>
+                <li><Link href="/tools/parts-database" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">パーツ辞典</Link></li>
+                <li><Link href="/tools/led-resistor-calc" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">LED抵抗計算</Link></li>
+                <li><Link href="/tools/ohms-law-calc" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">オームの法則</Link></li>
+              </ul>
+            </div>
+            <div>
+              <p className="text-gray-300 text-xs font-semibold mb-2">サイト情報</p>
+              <ul className="space-y-1.5">
+                <li><Link href="/" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">ホーム</Link></li>
+                <li><Link href="/about" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">概要</Link></li>
+                <li><Link href="/privacy" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">プライバシーポリシー</Link></li>
+                <li><Link href="/contact" className="text-gray-400 hover:text-teal-400 text-xs transition-colors">お問い合わせ</Link></li>
+              </ul>
+            </div>
           </nav>
         </div>
 

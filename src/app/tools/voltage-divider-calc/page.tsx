@@ -4,7 +4,7 @@ import VoltageDividerCalcClient from "@/components/tools/VoltageDividerCalcClien
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: `分圧回路計算ツール | 抵抗2本で電圧を自由に変換 — ${SITE_NAME}`,
+  title: "分圧回路計算ツール | 抵抗2本で電圧を自由に変換",
   description:
     "分圧回路の出力電圧を自動計算。目標電圧から最適な抵抗値の組み合わせも提案。Arduino ADC入力やセンサー電圧調整に便利。",
   openGraph: {

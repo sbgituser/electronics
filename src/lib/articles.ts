@@ -25,6 +25,24 @@ export interface Article extends ArticleMeta {
 
 const articlesDir = path.join(process.cwd(), "src/content/articles");
 
+export function getRelatedArticles(
+  slug: string,
+  category: CategoryKey,
+  tags: string[],
+  limit = 5
+): ArticleMeta[] {
+  const all = getAllArticles().filter((a) => a.slug !== slug);
+  const scored = all.map((a) => {
+    let score = 0;
+    if (a.category === category) score += 3;
+    const overlap = a.tags.filter((t) => tags.includes(t)).length;
+    score += overlap;
+    return { article: a, score };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  return scored.filter((s) => s.score > 0).slice(0, limit).map((s) => s.article);
+}
+
 export function getAllArticleSlugs(): string[] {
   if (!fs.existsSync(articlesDir)) return [];
   return fs
@@ -67,6 +85,14 @@ export function getArticleBySlug(slug: string): Article | null {
   renderer.table = (token) => {
     const html = originalTable(token);
     return `<div class="table-wrapper">${html}</div>`;
+  };
+  const originalImage = renderer.image.bind(renderer);
+  renderer.image = (token) => {
+    const html = originalImage(token);
+    return html.replace(
+      /^<img /,
+      '<img loading="lazy" '
+    );
   };
   const htmlContent = marked(content, { renderer }) as string;
   return {

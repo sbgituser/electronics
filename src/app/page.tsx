@@ -5,12 +5,44 @@ import ToolCard from "@/components/tools/ToolCard";
 import { beginnerRecipes } from "@/data/recipes/beginner";
 import RecipeCard from "@/components/recipes/RecipeCard";
 import { BookOpen, ChevronRight, Zap, CircuitBoard, BrainCircuit } from "lucide-react";
+import { SITE_URL, SITE_DESCRIPTION } from "@/lib/site";
 
 export default function HomePage() {
   const articles = getAllArticles().slice(0, 3);
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "エレクトロニクス研究所",
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    publisher: {
+      "@type": "Organization",
+      name: "kuras-plus",
+      url: "https://kuras-plus.com",
+    },
+  };
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "kuras-plus",
+    url: "https://kuras-plus.com",
+    logo: `${SITE_URL}/icon-512.png`,
+    sameAs: [],
+    description: SITE_DESCRIPTION,
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
       {/* Hero - SORACOM風ティールグラデーション */}
       <section className="relative bg-gradient-to-br from-[#006064] via-[#00838F] to-[#00ACC1] py-20 px-4 overflow-hidden">
         {/* 装飾パターン */}
@@ -158,33 +190,33 @@ export default function HomePage() {
 
           {/* Feature indicators */}
           <div className="flex gap-8 mt-14 pt-8 border-t border-white/15">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+            <Link href="/articles" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <BookOpen className="w-5 h-5 text-teal-200" />
               </div>
               <div>
                 <span className="text-white text-sm font-semibold block">学ぶ</span>
                 <span className="text-teal-200/70 text-xs">入門記事</span>
               </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+            </Link>
+            <Link href="/recipes" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <CircuitBoard className="w-5 h-5 text-teal-200" />
               </div>
               <div>
                 <span className="text-white text-sm font-semibold block">作る</span>
                 <span className="text-teal-200/70 text-xs">レシピ集</span>
               </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+            </Link>
+            <Link href="/tools" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors">
                 <BrainCircuit className="w-5 h-5 text-teal-200" />
               </div>
               <div>
                 <span className="text-white text-sm font-semibold block">つなぐ</span>
                 <span className="text-teal-200/70 text-xs">AI連携</span>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
