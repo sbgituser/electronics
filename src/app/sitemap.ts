@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { getAllArticles } from "@/lib/articles";
 import { allRecipes } from "@/data/recipes";
-import { allParts } from "@/data/parts";
+import { allParts, getAllTags, getAllBoardIds } from "@/data/parts";
 import { categoryGuides } from "@/data/parts/categories";
 
 export const dynamic = "force-static";
@@ -23,6 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/tools/ohms-law-calc`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/tools/voltage-divider-calc`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/tools/power-supply-calc`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/tools/circuit-calculators`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/tools/circuit-calculators/capacitor`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE_URL}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/contact`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
@@ -42,6 +44,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Recipe difficulty pages
+  const recipeDifficultyRoutes: MetadataRoute.Sitemap = [1, 2, 3].map((level) => ({
+    url: `${SITE_URL}/recipes/difficulty/${level}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  // Recipe board pages
+  const recipeBoardSet = new Set<string>();
+  for (const r of allRecipes) {
+    recipeBoardSet.add(r.board.toLowerCase().replace(/\s+/g, "-"));
+  }
+  const recipeBoardRoutes: MetadataRoute.Sitemap = Array.from(recipeBoardSet).map((boardId) => ({
+    url: `${SITE_URL}/recipes/board/${boardId}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   const partRoutes: MetadataRoute.Sitemap = allParts.map((p) => ({
     url: `${SITE_URL}/tools/parts-database/${p.id}`,
     lastModified: now,
@@ -56,5 +78,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...articleRoutes, ...recipeRoutes, ...partRoutes, ...categoryRoutes];
+  // Tag pages
+  const tagRoutes: MetadataRoute.Sitemap = getAllTags().map((tag) => ({
+    url: `${SITE_URL}/tools/parts-database/tag/${encodeURIComponent(tag)}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  }));
+
+  // Board compatibility pages
+  const boardCompatRoutes: MetadataRoute.Sitemap = getAllBoardIds().map((boardId) => ({
+    url: `${SITE_URL}/tools/parts-database/board/${boardId}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...articleRoutes,
+    ...recipeRoutes,
+    ...recipeDifficultyRoutes,
+    ...recipeBoardRoutes,
+    ...partRoutes,
+    ...categoryRoutes,
+    ...tagRoutes,
+    ...boardCompatRoutes,
+  ];
 }

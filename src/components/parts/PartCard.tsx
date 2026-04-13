@@ -12,6 +12,7 @@ const borderColors: Record<string, string> = {
   emerald: "border-l-emerald-500",
   violet: "border-l-violet-500",
   amber: "border-l-amber-500",
+  cyan: "border-l-cyan-500",
   slate: "border-l-gray-400",
 };
 
