@@ -28,7 +28,7 @@ export default function ToolsPage() {
       {
         "@type": "ItemList",
         name: "電子工作ツール一覧",
-        numberOfItems: 7,
+        numberOfItems: 10,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "開発ボード診断ツール", url: `${SITE_URL}/tools/board-picker` },
           { "@type": "ListItem", position: 2, name: "パーツ辞典", url: `${SITE_URL}/tools/parts-database` },
@@ -37,6 +37,9 @@ export default function ToolsPage() {
           { "@type": "ListItem", position: 5, name: "オームの法則計算", url: `${SITE_URL}/tools/ohms-law-calc` },
           { "@type": "ListItem", position: 6, name: "分圧回路計算", url: `${SITE_URL}/tools/voltage-divider-calc` },
           { "@type": "ListItem", position: 7, name: "電源容量計算", url: `${SITE_URL}/tools/power-supply-calc` },
+          { "@type": "ListItem", position: 8, name: "エッジAI ROI計算機", url: `${SITE_URL}/tools/edge-ai-roi` },
+          { "@type": "ListItem", position: 9, name: "IoT電力計算機", url: `${SITE_URL}/tools/iot-power-calc` },
+          { "@type": "ListItem", position: 10, name: "AI推論コスト計算機", url: `${SITE_URL}/tools/ai-inference-cost` },
         ],
       },
     ],
@@ -105,6 +108,26 @@ export default function ToolsPage() {
           title="電源容量計算"
           description="使うセンサーやモーターを選ぶだけで合計消費電流を自動計算。推奨電源を提案し、バッテリー駆動時間も算出します。"
           icon="🔌"
+        />
+        <ToolCard
+          href="/tools/edge-ai-roi"
+          title="エッジAI ROI計算機"
+          description="エッジAIデバイスの初期費用と月間コスト削減額から投資回収期間・ROIを算出。Raspberry PiやJetson Nanoの導入判断に。"
+          icon="📈"
+          badge="NEW"
+        />
+        <ToolCard
+          href="/tools/iot-power-calc"
+          title="IoT電力計算機"
+          description="IoTセンサーの種類・サンプリング間隔・台数から消費電力と月間電力量を算出。バッテリー持続時間の目安も表示します。"
+          icon="🔋"
+          badge="NEW"
+        />
+        <ToolCard
+          href="/tools/ai-inference-cost"
+          title="AI推論コスト計算機"
+          description="AIモデルのサイズ・推論回数・実行デバイスから月額・年間の推論コストを試算。クラウドvsエッジのコスト比較に。"
+          icon="🤖"
           badge="NEW"
         />
       </div>
