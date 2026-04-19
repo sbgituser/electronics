@@ -127,6 +127,38 @@ export default function OhmsLawCalcPage() {
         {/* 計算ツール */}
         <OhmsLawCalcClient />
 
+        {/* 使い方ガイド */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-blue-600 rounded-full" />
+            使い方ガイド
+          </h2>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-sm text-gray-700 leading-relaxed space-y-2">
+            <p><strong>Step 1:</strong> 電圧(V)・電流(I)・抵抗(R)・電力(P)のうち、わかっている2つの値を入力します。</p>
+            <p><strong>Step 2:</strong> 残りの2値がリアルタイムで自動計算されます。単位はV/mA/kΩ/mWで表示されます。</p>
+            <p><strong>Step 3:</strong> プリセットボタンからArduino Uno(5V/20mA)やESP32(3.3V/12mA)の代表的なGPIO出力を一発入力できます。</p>
+            <p>LED回路の抵抗値を求める場合は、電圧にVs−Vf（電源電圧−LED順方向電圧）を、電流にLEDの推奨電流を入力してください。</p>
+          </div>
+        </section>
+
+        {/* 関連記事 */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-blue-600 rounded-full" />
+            関連記事
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link href="/articles/ohms-law-explained-with-examples" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">オームの法則を実例で理解する</h3>
+              <p className="text-xs text-gray-500 mt-1">LED・モーター・センサー回路の計算例付き</p>
+            </Link>
+            <Link href="/articles/led-circuit-beginners-guide" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">LED回路の作り方入門</h3>
+              <p className="text-xs text-gray-500 mt-1">抵抗値計算から点灯まで完全ガイド</p>
+            </Link>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section className="mt-16">
           <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">

@@ -138,6 +138,37 @@ export default function ResistorColorCodePage() {
         {/* ツール本体 */}
         <ResistorColorCodeClient />
 
+        {/* 使い方ガイド */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-cyan-500 rounded-full" />
+            使い方ガイド
+          </h2>
+          <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-6 text-sm text-gray-700 leading-relaxed space-y-2">
+            <p><strong>正引き（色→抵抗値）:</strong> バンド数を選択し、各バンドの色をドロップダウンから選ぶと、抵抗値・許容差がリアルタイムで表示されます。</p>
+            <p><strong>逆引き（抵抗値→色）:</strong> 調べたい抵抗値を入力すると、対応するカラーコードの色の組み合わせが表示されます。</p>
+            <p>手元の抵抗の色が判別しにくい場合は、テスターで実測して確認するのが確実です。下の早見表も参考にしてください。</p>
+          </div>
+        </section>
+
+        {/* 関連記事 */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-cyan-500 rounded-full" />
+            関連記事
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link href="/articles/resistor-color-code-cheat-sheet" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">抵抗値カラーコード早見表</h3>
+              <p className="text-xs text-gray-500 mt-1">読み方と覚え方のコツを詳しく解説</p>
+            </Link>
+            <Link href="/articles/led-circuit-beginners-guide" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">LED回路の作り方入門</h3>
+              <p className="text-xs text-gray-500 mt-1">抵抗値計算から点灯まで完全ガイド</p>
+            </Link>
+          </div>
+        </section>
+
         {/* カラーコード早見表 */}
         <section className="mt-16">
           <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">

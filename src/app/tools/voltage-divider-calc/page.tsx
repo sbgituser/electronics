@@ -127,6 +127,37 @@ export default function VoltageDividerCalcPage() {
         {/* 計算ツール */}
         <VoltageDividerCalcClient />
 
+        {/* 使い方ガイド */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-green-600 rounded-full" />
+            使い方ガイド
+          </h2>
+          <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-sm text-gray-700 leading-relaxed space-y-2">
+            <p><strong>正引きモード:</strong> 入力電圧(Vin)とR1・R2の値を入力すると、出力電圧(Vout)を自動計算します。手持ちの抵抗で何Vが得られるかを確認できます。</p>
+            <p><strong>逆引きモード:</strong> 入力電圧と目標の出力電圧を指定すると、E24系列から最適なR1・R2の組み合わせを提案します。5V→3.3V変換などに便利です。</p>
+            <p>センサーの電圧をArduinoのADCで読み取る場合や、異なる電圧のボード間の信号変換に活用してください。</p>
+          </div>
+        </section>
+
+        {/* 関連記事 */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-green-600 rounded-full" />
+            関連記事
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link href="/articles/ohms-law-explained-with-examples" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">オームの法則を実例で理解する</h3>
+              <p className="text-xs text-gray-500 mt-1">分圧回路の計算例も掲載</p>
+            </Link>
+            <Link href="/articles/breadboard-wiring-basics" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">ブレッドボード配線の基本と実践</h3>
+              <p className="text-xs text-gray-500 mt-1">分圧回路の配線例も紹介</p>
+            </Link>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section className="mt-16">
           <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">

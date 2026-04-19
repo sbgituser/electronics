@@ -126,6 +126,46 @@ export default function LedResistorCalcPage() {
         {/* 計算ツール */}
         <LedResistorCalcClient />
 
+        {/* 使い方ガイド */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-amber-500 rounded-full" />
+            使い方ガイド
+          </h2>
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 text-sm text-gray-700 leading-relaxed space-y-2">
+            <p><strong>Step 1:</strong> 電源電圧を入力します（Arduino 5V、ESP32 3.3Vなどプリセットも利用可）。</p>
+            <p><strong>Step 2:</strong> LEDの順方向電圧（Vf）と順方向電流（If）を入力します。データシートに記載がなければ、色別の標準値を参考にしてください。</p>
+            <p><strong>Step 3:</strong> 接続方式（単体・直列・並列）とLED個数を選択すると、必要な抵抗値・消費電力・推奨ワット数がリアルタイムで表示されます。</p>
+            <p>計算結果はE24系列の最も近い標準値で表示されるため、そのまま部品を購入できます。</p>
+          </div>
+        </section>
+
+        {/* 関連記事 */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-amber-500 rounded-full" />
+            関連記事
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link href="/articles/led-circuit-beginners-guide" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">LED回路の作り方入門</h3>
+              <p className="text-xs text-gray-500 mt-1">抵抗値計算から点灯まで完全ガイド</p>
+            </Link>
+            <Link href="/articles/ohms-law-explained-with-examples" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">オームの法則を実例で理解する</h3>
+              <p className="text-xs text-gray-500 mt-1">計算ツール付き完全ガイド</p>
+            </Link>
+            <Link href="/articles/resistor-color-code-cheat-sheet" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">抵抗値カラーコード早見表</h3>
+              <p className="text-xs text-gray-500 mt-1">読み方と覚え方のコツ</p>
+            </Link>
+            <Link href="/articles/breadboard-wiring-basics" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">ブレッドボード配線の基本と実践</h3>
+              <p className="text-xs text-gray-500 mt-1">回路例5選で学ぶ配線テクニック</p>
+            </Link>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section className="mt-16">
           <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">

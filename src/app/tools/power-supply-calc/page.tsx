@@ -126,6 +126,37 @@ export default function PowerSupplyCalcPage() {
         {/* 計算ツール */}
         <PowerSupplyCalcClient />
 
+        {/* 使い方ガイド */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-orange-500 rounded-full" />
+            使い方ガイド
+          </h2>
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-6 text-sm text-gray-700 leading-relaxed space-y-2">
+            <p><strong>Step 1:</strong> 使用するマイコンボード（Arduino Uno、ESP32など）を選択します。</p>
+            <p><strong>Step 2:</strong> 接続するセンサー・モーター・LEDなどのコンポーネントを追加します。30種類以上のパーツから選べます。</p>
+            <p><strong>Step 3:</strong> 合計消費電流・推奨電源・バッテリー駆動時間が自動計算されます。20%の安全マージン込みで表示されるため、そのまま電源を選定できます。</p>
+          </div>
+        </section>
+
+        {/* 関連記事 */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-orange-500 rounded-full" />
+            関連記事
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link href="/articles/arduino-first-project-guide" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">Arduino初心者の最初のプロジェクト10選</h3>
+              <p className="text-xs text-gray-500 mt-1">LED点滅からセンサー制御まで段階的に学べる</p>
+            </Link>
+            <Link href="/articles/ohms-law-explained-with-examples" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">オームの法則を実例で理解する</h3>
+              <p className="text-xs text-gray-500 mt-1">消費電力の計算方法も詳しく解説</p>
+            </Link>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section className="mt-16">
           <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">

@@ -125,6 +125,37 @@ export default function CapacitorCalcPage() {
 
         <CapacitorCalcClient />
 
+        {/* 使い方ガイド */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-amber-500 rounded-full" />
+            使い方ガイド
+          </h2>
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 text-sm text-gray-700 leading-relaxed space-y-2">
+            <p><strong>合成容量計算:</strong> 接続方式（直列・並列）を選び、コンデンサの容量を入力すると合成容量が計算されます。最大5個まで追加可能です。</p>
+            <p><strong>RC時定数計算:</strong> 抵抗値とコンデンサ容量を入力すると、時定数(τ)と充放電時間の目安（1τ〜5τ）が表示されます。</p>
+            <p>タイマー回路の設計やフィルタ回路の周波数特性の把握に活用してください。</p>
+          </div>
+        </section>
+
+        {/* 関連記事 */}
+        <section className="mt-16">
+          <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
+            <div className="w-1 h-6 bg-amber-500 rounded-full" />
+            関連記事
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link href="/articles/ohms-law-explained-with-examples" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">オームの法則を実例で理解する</h3>
+              <p className="text-xs text-gray-500 mt-1">RC回路の計算にも必要な基礎知識</p>
+            </Link>
+            <Link href="/articles/led-circuit-beginners-guide" className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-sm text-[#1a2332]">LED回路の作り方入門</h3>
+              <p className="text-xs text-gray-500 mt-1">抵抗値計算から点灯まで完全ガイド</p>
+            </Link>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section className="mt-16">
           <h2 className="text-xl font-bold text-[#1a2332] mb-6 flex items-center gap-2.5">
